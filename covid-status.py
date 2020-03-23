@@ -6,25 +6,31 @@ from json import dumps
 from PIL import Image, ImageDraw, ImageFont
 import pandas as pd
 import datetime
+import re
 
 
 class CovidIndia():
 
     def hangout(self, active, cured, deaths, total):
 
-        url = '<WEBHOOK URL>'
+        url = '<INCOMING-WEBHOOK-URL>'
         currentDT = datetime.datetime.now()
 
         date = currentDT.strftime("%a, %b %d, %Y") + ' | ' + currentDT.strftime("%I:%M:%S %p")
 
+        message =  "*Good Morning Everyone!*\n\n" \
+                "*Current Status of COVID 2019 as of _" + date + "_*\n\n" \
+                "```Total number of Active cases across India    : " + str(active) + "\n" \
+                "Total number of Cured Cases across India     : " + str(cured) + "\n" \
+                "Total number of Deaths across India          : " + str(deaths) + "\n" \
+                "Total number of Confirmed Cases So far across India : " + str(total) + "```\n" \
+                "*For State Wise Report Visit <https://www.mohfw.gov.in/|Ministry of Health & Family Welfare>*\n\n" \
+                "*Stay Hygiene! Stay Safe!*"
+
         bot_message = {
-                      "text": "*Gud Morning Everyone!* \n\n"
-                              "*Current Status of COVID 2019 as of _" + date + "_*\n\n"
-                              "```Total number of Confirmed Cases across India : " + str(total) + "\n"
-                              "Total number of Active cases across India    : " + str(active) + "\n"
-                              "Total number of Cured Cases across India     : " + str(cured) + "\n"
-                              "Total number of Deaths across India          : " + str(deaths) + "```"
+                    "text": message
         }
+
         message_headers = {'Content-Type': 'application/json; charset=UTF-8'}
 
         http_obj = Http()
@@ -53,9 +59,11 @@ class CovidIndia():
                 table_data.append(row)
 
             report = ['Consolidated Report'] + table_data[len(table_data) - 1]
+
+            print(report)
             cons_report = []
             for element in report:
-                cons_report.append(element.strip())
+                cons_report.append(re.sub('[^0-9,.]', '', element))
 
             print(cons_report)
 
@@ -65,6 +73,7 @@ class CovidIndia():
             print("Total number of Active COVID 2019 cases across India :", active_cases)
             print("Total number of Cured/Discharged COVID 2019 cases across India :", cons_report[4])
             print("Total number of Deaths due to COVID 2019 across India :", cons_report[5])
+            print("Total count of cases :", total_cases)
 
             #data = table_data[6:-1]
 
