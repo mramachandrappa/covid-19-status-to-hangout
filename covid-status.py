@@ -11,21 +11,23 @@ import re
 
 class CovidIndia():
 
-    def hangout(self, active, cured, deaths, total):
+    def hangout(self, active, ind_national, foreign_national, cured, deaths, total):
 
         url = '<INCOMING-WEBHOOK-URL>'
         currentDT = datetime.datetime.now()
 
         date = currentDT.strftime("%a, %b %d, %Y") + ' | ' + currentDT.strftime("%I:%M:%S %p")
 
-        message =  "*Good Morning Everyone!*\n\n" \
-                "*Current Status of COVID 2019 as of _" + date + "_*\n\n" \
-                "```Total number of Active cases across India    : " + str(active) + "\n" \
-                "Total number of Cured Cases across India     : " + str(cured) + "\n" \
-                "Total number of Deaths across India          : " + str(deaths) + "\n" \
-                "Total number of Confirmed Cases So far across India : " + str(total) + "```\n" \
-                "*For State Wise Report Visit <https://www.mohfw.gov.in/|Ministry of Health & Family Welfare>*\n\n" \
-                "*Stay Hygiene! Stay Safe!*"
+        message = "*Good Morning Everyone!*\n\n" \
+                  "*Current Status of COVID-19 in India as on _" + date + "_*\n\n" \
+                  "```Total Number of Active Covid-19 Cases so far across India : " + str(active) + "\n\n" \
+                  "Total Number of Cases(Indian National)    : " + str(ind_national) + "\n" \
+                  "Total Number of Cases(Foreign National)   : " + str(foreign_national) + "\n" \
+                  "Total Number of Cured/Migrated Cases      : " + str(cured) + "\n" \
+                  "Total Number of Deaths due to Covid-19    : " + str(deaths) + "\n\n" \
+                  "Total Count of Confirmed Covid-19 Cases so far across India : " + str(total) + "```\n" \
+                  "*For State Wise Report Visit -> <https://www.mohfw.gov.in/|Ministry of Health & Family Welfare>*\n\n" \
+                  "*Follow Hygiene! Stay Home! And Stay Safe!*"
 
         bot_message = {
                     "text": message
@@ -99,7 +101,7 @@ class CovidIndia():
             #f.write(str(df))
             #f.close()
 
-            self.hangout(active_cases, cons_report[4], cons_report[5], total_cases)
+            self.hangout(active_cases, cons_report[2], cons_report[3], cons_report[4], cons_report[5], total_cases)
 
 s = CovidIndia()
 print(s.covid_report())
