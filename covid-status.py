@@ -12,7 +12,6 @@ class Covid19India():
     def smartshift_Bot(self, message, webhook_url):
 
         url = webhook_url
-
         bot_message = {
                     "text": message
         }
@@ -28,7 +27,7 @@ class Covid19India():
                 body=dumps(bot_message),
         )
 
-        print(response)
+        return response
 
     def covid_report(self):
             url = 'https://www.mohfw.gov.in/'
