@@ -7,7 +7,7 @@ import re
 import sys
 
 
-class Covid19_Report_IN():
+class Covid19India():
 
     def smartshift_Bot(self, message, webhook_url):
 
@@ -53,13 +53,13 @@ class Covid19_Report_IN():
                     if data == "Total number of confirmed cases in India":
                         IN_Report_1 = table
 
-            print(KA_Report)
-            print(IN_Report_1)
+            #print(KA_Report)
+            #print(IN_Report_1)
 
             fail_report = "*Report generation is failed!*"
-            sap_automation = "https://chat.googleapis.com/v1/spaces/AAAAimyyXHo/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=u-1wNxlL_j45X0AK9iLHlBMok4ZLF779YpGv59mLXc8%3D"
-            SS_India_Group = "https://chat.googleapis.com/v1/spaces/AAAAimyyXHo/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=u-1wNxlL_j45X0AK9iLHlBMok4ZLF779YpGv59mLXc8%3D"
-
+            sap_automation = "<Webhook_URL>
+            SS_India_Group = "<Webhook_URL>
+            
             if IN_Report_1 is None:
                 self.smartshift_Bot(fail_report, sap_automation)
                 sys.exit()
@@ -68,7 +68,7 @@ class Covid19_Report_IN():
             for element in IN_Report_1:
                 IN_Report.append(re.sub('[^0-9,.]', '', element))
 
-            print(IN_Report)
+            #print(IN_Report)
 
             active_cases = int(IN_Report[1]) - int(IN_Report[2]) - int(IN_Report[3])
             total_cases = int(IN_Report[1])
@@ -91,5 +91,5 @@ class Covid19_Report_IN():
             self.smartshift_Bot(report, sap_automation)
 
 
-s = Covid19_Report_IN()
+s = Covid19India()
 print(s.covid_report())
