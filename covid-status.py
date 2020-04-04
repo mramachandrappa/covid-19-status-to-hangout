@@ -55,12 +55,11 @@ class Covid19India():
             #print(KA_Report)
             #print(IN_Report_1)
 
-            fail_report = "*Report generation is failed!*"
-            sap_automation = "<Webhook_URL>
-            SS_India_Group = "<Webhook_URL>
+            fail_message = "*Report generation is failed!!*"
+            chat_room_1 = "<Webhook_URL>"
             
             if IN_Report_1 is None:
-                self.smartshift_Bot(fail_report, sap_automation)
+                self.smartshift_Bot(fail_message, chat_room_1)
                 sys.exit()
 
             IN_Report = []
@@ -86,8 +85,10 @@ class Covid19India():
                      "Total Confirmed Covid-19 Cases registered so far across India : " + str(total_cases) + "```\n" \
                      "*For State Wise Report Visit -> <https://www.mohfw.gov.in/|Ministry of Health & Family Welfare>*\n\n" \
                      "*Follow Hygiene! Stay Home! And Stay Safe!*"
-
-            self.smartshift_Bot(report, sap_automation)
+            
+            chat_room_2 = "<Webhook_URL>"
+            
+            self.smartshift_Bot(report, chat_room_2)
 
 
 s = Covid19India()
