@@ -1,2 +1,5 @@
 # covid-19-status-to-hangout
-To send Covid-2019 status report to hangout chat room.
+
+An initiation to send Covid-19 status report of India to hangout chat room of my office Community.
+
+
